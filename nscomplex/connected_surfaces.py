@@ -39,7 +39,7 @@ class ConnectedSurfaces(object):
     """
     def __init__(self, triangulation, euler_bound=None):
         regina_tri = regina_util.as_regina(triangulation)
-        name = regina_tri.label()
+        name = regina_tri.isoSig()
 
         # Needed to ensure that all closed surfaces are seperating and
         # orientable.
