@@ -17,15 +17,14 @@ import snappy, regina
 
 def as_regina(triangulation):
     """
-    >>> str(as_regina('m004').label())
-    'm004'
+    >>> as_regina('m004').isoSig()
+    'cPcbbbiht'
     """
     if isinstance(triangulation, str):
         triangulation = snappy.Triangulation(triangulation)
     if hasattr(triangulation, '_to_string'):
         # SnapPy Triangulation
         regina_tri = regina.Triangulation3(triangulation._to_string())
-        regina_tri.setLabel(triangulation.name())
     else:
         regina_tri = triangulation
     return regina_tri

@@ -441,7 +441,7 @@ def vertex_location(A, B):
     assert A.orientable and B.orientable
     assert is_disjoint(A, B) and A != B
     T = A.triangulation
-    assert len(T.vertices()) == 1
+    assert T.vertices().size() == 1
     assert T.homologyH2().isTrivial()
     w_a, w_b = A.edge_weights, B.edge_weights
     edge_intersections = skeleta.edge_intersections(T, w_a, w_b)

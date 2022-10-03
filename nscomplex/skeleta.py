@@ -34,8 +34,8 @@ class TwoSkeletonOfTriangulation(object):
     def __init__(self, regina_triangulation):
         self.triangulation = T = regina_triangulation
         triangles = T.triangles()
-        self.num_triangles = len(triangles)
-        self.num_edges = len(T.edges())
+        self.num_triangles = triangles.size()
+        self.num_edges = T.edges().size()
         self.faces = []
         for t, tri in enumerate(triangles):
             oriented_edges = []
@@ -55,7 +55,7 @@ class TwoSkeletonOfTriangulation(object):
         divisors.  
         """
         import sage.all
-        assert len(self.triangulation.vertices()) == 1
+        assert self.triangulation.vertices().size() == 1
         A = sage.all.matrix(sage.all.ZZ, self.num_edges, self.num_triangles)
         for i, face in enumerate(self.faces):
             for edge, sign in face:
@@ -593,7 +593,7 @@ def vertex_location(A, B):
     """
 
     T = A.triangulation()
-    assert len(T.vertices()) == 1
+    assert T.vertices().size() == 1
     assert T.homologyH2().isTrivial()
     assert A.isConnected() and B.isConnected() and A.disjoint(B)
 
