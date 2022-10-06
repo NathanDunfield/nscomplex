@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: nscomplex
+Version: 1.0.1
+Summary: Counting essential surfaces for fun and profit
+Home-page: http://t3m.computop.org
+Author: Nathan M. Dunfield, Stavros Garoufalidis, and Hyam Rubinstein
+Author-email: nathan@dunfield.info
+License: GPLv2+
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+
+Code accompanying the paper "Counting essential surfaces in
+3-manifolds" by Nathan M. Dunfield, Stavros Garoufalidis, and Hyam
+Rubinstein.
