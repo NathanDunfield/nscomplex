@@ -29,7 +29,7 @@ class SurfacesByEuler(object):
         S = remove_vertex_links(surface)
         e = to_int(S.eulerChar())
         current = self[e]
-        if not S.isEmpty() and not any(S.sameSurface(C) for C in current):
+        if not S.isEmpty() and not any(S == C for C in current):
             self.surfaces[e] = current + [S]
             return True
         return False
@@ -101,7 +101,7 @@ class SurfacesByEuler(object):
 
 def regina_enumerate_surfaces(triangulation):
     assert triangulation.isOriented()
-    surfaces = regina.NormalSurfaces.enumerate(triangulation,
+    surfaces = regina.NormalSurfaces(triangulation,
                                regina.NS_AN_QUAD_OCT_CLOSED,
                                regina.NS_FUNDAMENTAL | regina.NS_EMBEDDED_ONLY)
     return [in_standard_coordinates(surfaces.surface(i))
@@ -109,8 +109,8 @@ def regina_enumerate_surfaces(triangulation):
 
 def min_euler_vertex_surface(triangulation):
     assert triangulation.isOriented()
-    surfaces = regina.NormalSurfaces.enumerate(triangulation,
-                                                   regina.NS_QUAD_CLOSED)
+    surfaces = regina.NormalSurfaces(triangulation,
+                                    regina.NS_QUAD_CLOSED)
     surfaces = [surfaces.surface(i) for i in range(surfaces.size())]
     if len(surfaces) == 0:
         return 0
@@ -119,8 +119,8 @@ def min_euler_vertex_surface(triangulation):
 
 def min_euler_vertex_surface_standard(triangulation):
     assert triangulation.isOriented()
-    surfaces = regina.NormalSurfaces.enumerate(triangulation,
-                                                   regina.NS_STANDARD)
+    surfaces = regina.NormalSurfaces(triangulation,
+                                    regina.NS_STANDARD)
     surfaces = [surfaces.surface(i) for i in range(surfaces.size())]
     if len(surfaces) == 0:
         return 0
@@ -129,8 +129,8 @@ def min_euler_vertex_surface_standard(triangulation):
 
 def min_euler_vert_std_sans_obvious_compression(triangulation):
     assert triangulation.isOriented()
-    surfaces = regina.NormalSurfaces.enumerate(triangulation,
-                                                   regina.NS_STANDARD)
+    surfaces = regina.NormalSurfaces(triangulation,
+                                    regina.NS_STANDARD)
     surfaces = [surfaces.surface(i) for i in range(surfaces.size())]
     if len(surfaces) == 0:
         return 0
@@ -141,23 +141,23 @@ def min_euler_vert_std_sans_obvious_compression(triangulation):
 
 def num_vert_std_sans_obvious_compression(triangulation):
     assert triangulation.isOriented()
-    surfaces = regina.NormalSurfaces.enumerate(triangulation,
-                                                   regina.NS_STANDARD)
+    surfaces = regina.NormalSurfaces(triangulation,
+                                    regina.NS_STANDARD)
     surfaces = [surfaces.surface(i) for i in range(surfaces.size())]
     return len([S for S in surfaces
                 if not has_annulus_of_quads_around_a_thin_edge(S)])
 
 def vertex_surfaces(triangulation):
     assert triangulation.isOriented()
-    surfaces = regina.NormalSurfaces.enumerate(triangulation,
-                                                   regina.NS_QUAD_CLOSED)
+    surfaces = regina.NormalSurfaces(triangulation,
+                                    regina.NS_QUAD_CLOSED)
     return [in_standard_coordinates(surfaces.surface(i))
             for i in range(surfaces.size())]
 
 def vertex_surfaces_standard(triangulation):
     assert triangulation.isOriented()
-    surfaces = regina.NormalSurfaces.enumerate(triangulation,
-                                                   regina.NS_STANDARD)
+    surfaces = regina.NormalSurfaces(triangulation,
+                                    regina.NS_STANDARD)
     return [in_standard_coordinates(surfaces.surface(i))
             for i in range(surfaces.size())]
 

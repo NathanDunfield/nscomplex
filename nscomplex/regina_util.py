@@ -327,7 +327,7 @@ def is_small(triangulation):
     False
     """
     R = triangulation
-    surfaces = regina.NormalSurfaces.enumerate(R, regina.NS_QUAD_CLOSED)
+    surfaces = regina.NormalSurfaces(R, regina.NS_QUAD_CLOSED)
     if surfaces is None:
         return True
     
@@ -353,7 +353,7 @@ def least_genus_essential_surface(triangulation):
     -2
     """
     R = triangulation
-    regina_surfaces = regina.NormalSurfaces.enumerate(R, regina.NS_STANDARD)
+    regina_surfaces = regina.NormalSurfaces(R, regina.NS_STANDARD)
     surfaces = [regina_surfaces.surface(i) for i in range(regina_surfaces.size())]
     surfaces.sort(key=lambda S:-S.eulerChar())
     for S in surfaces:
@@ -367,7 +367,7 @@ def least_genus_essential_surface(triangulation):
 
 def fundamental_genus2_surfaces(regina_triangulation):
     T = regina_triangulation
-    surfaces = regina.NormalSurfaces.enumerate(T,
+    surfaces = regina.NormalSurfaces(T,
                         regina.NS_AN_STANDARD,
                         regina.NS_FUNDAMENTAL | regina.NS_EMBEDDED_ONLY)
     normal, almost_normal = [], []

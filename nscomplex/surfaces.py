@@ -51,7 +51,7 @@ Testing haken sum of surfaces in standard vs quad coors
 (2, 4, 4, 4, 4, 4, 2)
 >>> sum_quad = hsum(N0, N4, 'quad'); edge_wts(sum_quad)
 (0, 2, 2, 2, 2, 2, 0)
->>> remove_links(sum_std).sameSurface(sum_quad)
+>>> remove_links(sum_std) == sum_quad
 True
 >>> (normal[0] + normal[4]).edge_weights == edge_wts(sum_quad)
 True
@@ -442,7 +442,7 @@ def vertex_location(A, B):
     assert is_disjoint(A, B) and A != B
     T = A.triangulation
     assert T.vertices().size() == 1
-    assert T.homologyH2().isTrivial()
+    assert T.homology(2).isTrivial()
     w_a, w_b = A.edge_weights, B.edge_weights
     edge_intersections = skeleta.edge_intersections(T, w_a, w_b)
 

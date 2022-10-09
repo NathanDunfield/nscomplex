@@ -594,7 +594,7 @@ def vertex_location(A, B):
 
     T = A.triangulation()
     assert T.vertices().size() == 1
-    assert T.homologyH2().isTrivial()
+    assert T.homology(2).isTrivial()
     assert A.isConnected() and B.isConnected() and A.disjoint(B)
 
     w_a = regina_util.edge_weights(A)
